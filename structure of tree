@@ -1,0 +1,51 @@
+### Basic structure of tree
+
+#include <bits/stdc++.h>
+using namespace std;
+struct tree *root=NULL;
+struct tree
+{
+    int data;
+    struct tree *left;
+    struct tree *right;
+    
+    tree(int x)
+    {
+        this->data=x;
+        left=right=NULL;
+    }
+};
+
+int main() {
+	root = new tree(7);
+	root->left= new tree(9);
+	root->right=new tree(5);
+	
+	cout<<root->data;
+	return 0;
+}
+
+##implementation for competitive programming
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	map<int,vector<int>>tree;
+	
+	int n;
+	cin>>n;
+	
+	for(int i=0;i<n;i++)
+	{
+	    int u,v;
+	    cin>>u>>v;
+	    tree[u].push_back(v);
+	}
+	
+	for(auto it:tree)
+	{
+	    cout<<it.first;
+	}
+	return 0;
+}
