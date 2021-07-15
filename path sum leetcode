@@ -1,0 +1,56 @@
+## path sum 1
+
+int sum=0;
+class Solution {
+public:
+    bool hasPathSum(TreeNode* root, int targetSum) {
+        if(root==NULL)
+            return false;
+        
+        if(root->left==NULL && root->right==NULL)
+        {
+            if(targetSum==root->val)
+                return 1;
+            else
+                return 0;
+            
+        }
+        
+        return hasPathSum(root->left,targetSum-root->val)
+               ||
+               hasPathSum(root->right,targetSum-root->val);
+    }
+};
+
+#path sum 2
+class Solution {
+public:
+    void utlity(TreeNode *root ,int targetSum,vector<vector<int>>&ans,vector<int>&temp,int sum)
+    {
+        if(root==NULL)
+            return;
+        
+        sum=sum+root->val;
+        temp.push_back(root->val);
+        
+        if( root->left ==NULL && root->right == NULL)
+        {
+            if(sum==targetSum)
+            {
+                ans.push_back(temp);
+            }
+        }
+        utlity(root->left,targetSum,ans,temp,sum);
+        utlity(root->right,targetSum,ans,temp,sum);
+        temp.pop_back();
+    }
+    
+    vector<vector<int>> pathSum(TreeNode* root, int targetSum) {
+        vector<vector<int>>ans;
+        vector<int>temp;
+        
+        utlity(root,targetSum,ans,temp,0);
+        
+        return ans;
+    }
+};
